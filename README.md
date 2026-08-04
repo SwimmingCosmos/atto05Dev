@@ -50,6 +50,8 @@ grep -rn "TODO" content/
 
 `draft: true` の間は `npm run dev` でだけ見えます。公開するときに `false` にしてください。
 
+詳細ページを作るほどの情報がないものは、front matter に `url:` を書くと、カードから直接そのページへ飛ぶ外部リンクとして載せられます。unityroom で公開済みのゲームなどに便利です。
+
 ### サムネイルは動画から自動で作られる
 
 `videos:` に YouTube か Google Drive の URL をそのまま貼ると、
@@ -110,6 +112,25 @@ Cloudflare の Git 連携（Workers）でデプロイする場合、ダッシュ
 ほかのホスティング（Vercel / Netlify / GitHub Pages）でも `out/` を配信すれば動きます。GitHub Pages でサブパス（`https://<ユーザー名>.github.io/<リポジトリ名>/`）に置く場合だけ、`next.config.ts` に `basePath: "/<リポジトリ名>"` を足してください。
 
 公開する URL を変えるときは、`content/site.yaml` の `url` も合わせて変えてください。OGP と `sitemap.xml` に使われます。
+
+### 独自ドメイン（atto05.dev）で公開する
+
+デプロイ直後の URL は `https://<プロジェクト名>.<アカウント名>.workers.dev` になっています。独自ドメインに切り替える手順は次のとおりです。
+
+1. Cloudflare ダッシュボードで atto05.dev をアカウントに追加してください（未取得の場合は Domain Registration から取得できます）
+2. `wrangler.toml` の `routes` のコメントを外して push してください。次のデプロイでカスタムドメインが自動設定されます。ダッシュボードから設定する場合は、Workers のプロジェクト → Settings → Domains & Routes → Add → Custom Domain でも同じことができます
+3. 表示を確認できたら、`wrangler.toml` の `workers_dev = false` のコメントも外すと、workers.dev 側の URL を閉じられます
+
+### メール（@atto05.dev）で連絡を受け取る
+
+Cloudflare の Email Routing を使うと、独自ドメイン宛のメールを普段使っているアドレスに転送できます。サーバーは不要で、無料で使えます。
+
+1. ダッシュボードで atto05.dev のゾーンを開き、Email → Email Routing を有効化してください（必要な MX / TXT レコードは自動で追加されます）
+2. Destination addresses に転送先のアドレスを追加し、届いた確認メールを承認してください
+3. Custom addresses で `contact@atto05.dev` のような受信用アドレスを作り、転送先に紐付けてください
+4. `content/profile.yaml` の Mail の項目のコメントを外すと、サイトの連絡先にメールが並びます
+
+Email Routing は受信専用です。`contact@atto05.dev` を差出人にして送信もしたい場合は、Gmail の「他のメールアドレスからメールを送信」に SMTP 設定を追加する方法が手軽です。
 
 ## 構成
 

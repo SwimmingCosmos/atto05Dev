@@ -11,10 +11,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${base}/`, priority: 1 },
     { url: `${base}/blog/`, priority: 0.8 },
-    ...getWorks().map((work) => ({
-      url: `${base}/works/${work.slug}/`,
-      priority: 0.7,
-    })),
+    ...getWorks()
+      .filter((w) => !w.url)
+      .map((work) => ({
+        url: `${base}/works/${work.slug}/`,
+        priority: 0.7,
+      })),
     ...getAllPosts().map((post) => ({
       url: `${base}/blog/${post.slug}/`,
       lastModified: post.updated ?? post.date,

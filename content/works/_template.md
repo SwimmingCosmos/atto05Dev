@@ -13,6 +13,12 @@ tech: [Unity, "C#"]
 summary: 一覧カードに出る1〜2行の説明。
 badge: 学会発表 # カードの左上に出す短いラベル。省略OK
 
+# --- 外部リンクだけで載せる場合 ---
+# url を設定すると、詳細ページを作らずにカードから直接この URL へ飛びます。
+# unityroom などで公開済みのゲームを URL だけで載せたいときに使ってください。
+# （このとき本文と links は表示されません。thumbnail や videos はサムネイル用として有効です）
+url: # https://unityroom.com/games/xxxx
+
 # --- サムネイル ---
 # thumbnail を書かなくても、videos → gallery の順で自動的にサムネイルを作ります。
 # YouTube はポスターフレーム、Google Drive は先頭のプレビュー画像が使われます。

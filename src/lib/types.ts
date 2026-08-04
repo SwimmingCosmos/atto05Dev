@@ -57,6 +57,8 @@ export type Work = {
   tech: string[];
   summary: string;
   badge?: string;
+  /** 外部リンクのみの作品。設定すると詳細ページを作らず、カードから直接この URL へ飛ぶ */
+  url?: string;
   /**
    * カードに出す画像。front matter で明示 → 動画のポスター →
    * ギャラリー1枚目 → プレースホルダー の順で決まる

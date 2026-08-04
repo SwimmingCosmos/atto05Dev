@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { ArrowUpRight } from "@/components/SocialIcons";
 import { Tag } from "@/components/Tag";
 import type { Work } from "@/lib/types";
 
+const CARD_CLASS =
+  "group flex flex-col overflow-hidden rounded-xl border border-line bg-surface transition-colors hover:border-line-strong";
+
 export function WorkCard({ work }: { work: Work }) {
-  return (
-    <Link
-      href={`/works/${work.slug}/`}
-      className="group flex flex-col overflow-hidden rounded-xl border border-line bg-surface transition-colors hover:border-line-strong"
-    >
+  const inner = (
+    <>
       <div className="relative aspect-video overflow-hidden border-b border-line bg-surface-2">
         <Image
           src={work.thumbnail}
@@ -33,6 +34,12 @@ export function WorkCard({ work }: { work: Work }) {
 
         <h3 className="leading-snug font-bold group-hover:text-accent">
           {work.title}
+          {work.url && (
+            <ArrowUpRight
+              size={14}
+              className="ml-1 inline-block text-faint group-hover:text-accent"
+            />
+          )}
         </h3>
 
         <p className="line-clamp-2 text-sm text-muted">{work.summary}</p>
@@ -48,6 +55,25 @@ export function WorkCard({ work }: { work: Work }) {
           ))}
         </div>
       </div>
+    </>
+  );
+
+  if (work.url) {
+    return (
+      <a
+        href={work.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={CARD_CLASS}
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={`/works/${work.slug}/`} className={CARD_CLASS}>
+      {inner}
     </Link>
   );
 }

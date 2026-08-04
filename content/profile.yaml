@@ -51,3 +51,8 @@ sns:
     url: https://qiita.com/atto_seconds
     icon: qiita
     note: 技術記事
+  # メール転送（Cloudflare Email Routing）を設定したら、コメントを外してください
+  # - label: Mail
+  #   url: mailto:contact@atto05.dev
+  #   icon: mail
+  #   note: メールでの連絡

@@ -99,6 +99,7 @@ export function getWorks(): Work[] {
         tech: Array.isArray(data.tech) ? data.tech.map(String) : [],
         summary: String(data.summary ?? ""),
         badge: data.badge ? String(data.badge) : undefined,
+        url: data.url ? String(data.url) : undefined,
         thumbnail,
         videos,
         gallery,

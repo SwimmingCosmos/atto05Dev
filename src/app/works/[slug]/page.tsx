@@ -11,7 +11,7 @@ import { EMPTY_ROUTE_PARAM } from "@/lib/routes";
 const PLACEHOLDER = "/works/placeholder.svg";
 
 export function generateStaticParams() {
-  const works = getWorks();
+  const works = getWorks().filter((w) => !w.url);
   if (works.length === 0) return [{ slug: EMPTY_ROUTE_PARAM }];
   return works.map((work) => ({ slug: work.slug }));
 }
@@ -37,10 +37,10 @@ export async function generateMetadata({
 export default async function WorkPage({ params }: PageProps<"/works/[slug]">) {
   const { slug } = await params;
   const work = getWork(slug);
-  if (!work) notFound();
+  if (!work || work.url) notFound();
 
   const html = await getWorkHtml(work);
-  const works = getWorks();
+  const works = getWorks().filter((w) => !w.url);
   const index = works.findIndex((w) => w.slug === work.slug);
   const next = works.length > 1 ? works[(index + 1) % works.length] : null;
 

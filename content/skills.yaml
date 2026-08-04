@@ -14,7 +14,7 @@ groups:
 
   - stars: 1
     means: 調べながらであれば実装・修正が可能
-    items: [Shader（HLSL）, JavaScript, Go, Figma, HSP（マイコン用）]
+    items: [Shader（HLSL）, TypeScript, JavaScript, Go, Figma, HSP（マイコン用）]
 
 # 資格。1行コピーして足すだけで追加できます
 certifications:
