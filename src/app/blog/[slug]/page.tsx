@@ -6,9 +6,12 @@ import { notFound } from "next/navigation";
 import { Tag } from "@/components/Tag";
 import { getAllPosts, getPost } from "@/lib/blog";
 import { formatDate } from "@/lib/format";
+import { EMPTY_ROUTE_PARAM } from "@/lib/routes";
 
 export function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+  const posts = getAllPosts();
+  if (posts.length === 0) return [{ slug: EMPTY_ROUTE_PARAM }];
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -68,7 +71,7 @@ export default async function BlogPost({ params }: PageProps<"/blog/[slug]">) {
           {post.draft && <Tag variant="accent">下書き</Tag>}
         </div>
 
-        <h1 className="mt-3 font-display text-3xl leading-tight font-bold sm:text-4xl">
+        <h1 className="mt-3 text-3xl leading-tight font-bold sm:text-4xl">
           {post.title}
         </h1>
 

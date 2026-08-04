@@ -2,14 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 import matter from "gray-matter";
-import rehypeHighlight from "rehype-highlight";
-import rehypeRaw from "rehype-raw";
-import rehypeSlug from "rehype-slug";
-import rehypeStringify from "rehype-stringify";
-import remarkGfm from "remark-gfm";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import { unified } from "unified";
+
+import { markdownToHtml, toIsoDate } from "@/lib/markdown";
 
 /** 記事の置き場所。リポジトリ直下の content/blog/*.md */
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
@@ -51,15 +45,6 @@ function slugOf(fileName: string) {
 function estimateReadingMinutes(body: string) {
   const chars = body.replace(/\s/g, "").length;
   return Math.max(1, Math.round(chars / 500));
-}
-
-/**
- * front matter の `date: 2026-08-04` は YAML の仕様で Date オブジェクトになる。
- * クォートで囲って書かれた場合は文字列のままなので、両方を YYYY-MM-DD に揃える。
- */
-function toIsoDate(value: unknown): string {
-  if (value instanceof Date) return value.toISOString().slice(0, 10);
-  return String(value).slice(0, 10);
 }
 
 function readFileMeta(fileName: string): { meta: PostMeta; body: string } {
@@ -112,21 +97,6 @@ export function getAllPostSlugs(): string[] {
   return getAllPosts().map((p) => p.slug);
 }
 
-async function toHtml(markdown: string): Promise<string> {
-  const file = await unified()
-    .use(remarkParse)
-    .use(remarkGfm)
-    // 記事中に YouTube の iframe などを直接書けるようにする
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeRaw)
-    .use(rehypeSlug)
-    .use(rehypeHighlight, { detect: true })
-    .use(rehypeStringify, { allowDangerousHtml: true })
-    .process(markdown);
-
-  return String(file);
-}
-
 export async function getPost(slug: string): Promise<Post | null> {
   const fileName = listFiles().find((f) => slugOf(f) === slug);
   if (!fileName) return null;
@@ -134,7 +104,7 @@ export async function getPost(slug: string): Promise<Post | null> {
   const { meta, body } = readFileMeta(fileName);
   if (!visible(meta)) return null;
 
-  return { ...meta, html: await toHtml(body) };
+  return { ...meta, html: await markdownToHtml(body) };
 }
 
 /** タグと件数の一覧（多い順） */

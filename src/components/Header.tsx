@@ -1,20 +1,27 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { site } from "@/content/site";
+const nav = [
+  { label: "プロフィール", href: "/#about" },
+  { label: "制作物", href: "/#works" },
+  { label: "発表", href: "/#writing" },
+  { label: "経歴", href: "/#career" },
+  { label: "スキル", href: "/#skills" },
+  { label: "ブログ", href: "/blog/" },
+  { label: "連絡先", href: "/#contact" },
+];
 
-export function Header() {
+type Props = {
+  handle: string;
+  handleEn: string;
+  icon: string;
+};
+
+export function Header({ handle, handleEn, icon }: Props) {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // メニューを開いている間は背面をスクロールさせない
   useEffect(() => {
@@ -25,33 +32,30 @@ export function Header() {
   }, [open]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-colors duration-300 ${
-        scrolled || open
-          ? "border-b border-line bg-bg/85 backdrop-blur-md"
-          : "border-b border-transparent"
-      }`}
-    >
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-5 sm:px-8">
+    <header className="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-md">
+      <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-5 sm:px-6">
         <Link
           href="/"
-          className="group flex items-baseline gap-2"
+          className="flex items-center gap-2.5"
           onClick={() => setOpen(false)}
         >
-          <span className="font-display text-lg font-bold tracking-tight">
-            Atto
-          </span>
-          <span className="font-mono text-[11px] text-faint transition-colors group-hover:text-accent">
-            /portfolio
-          </span>
+          <Image
+            src={icon}
+            alt=""
+            width={26}
+            height={26}
+            className="rounded-full border border-line"
+          />
+          <span className="font-bold">{handle}</span>
+          <span className="font-mono text-xs text-faint">{handleEn}</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          {site.nav.map((item) => (
+        <nav className="hidden items-center md:flex">
+          {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-1.5 text-sm text-muted transition-colors hover:bg-surface-2 hover:text-fg"
+              className="rounded-md px-2.5 py-1.5 text-sm text-muted transition-colors hover:bg-surface-2 hover:text-fg"
             >
               {item.label}
             </Link>
@@ -67,7 +71,7 @@ export function Header() {
         >
           <span className="relative block h-4 w-5">
             <span
-              className={`absolute left-0 block h-px w-full bg-current transition-all duration-300 ${
+              className={`absolute left-0 block h-px w-full bg-current transition-all duration-200 ${
                 open ? "top-2 rotate-45" : "top-0.5"
               }`}
             />
@@ -77,7 +81,7 @@ export function Header() {
               }`}
             />
             <span
-              className={`absolute left-0 block h-px w-full bg-current transition-all duration-300 ${
+              className={`absolute left-0 block h-px w-full bg-current transition-all duration-200 ${
                 open ? "top-2 -rotate-45" : "top-3.5"
               }`}
             />
@@ -86,13 +90,13 @@ export function Header() {
       </div>
 
       {open && (
-        <nav className="border-t border-line bg-bg px-5 pb-6 md:hidden">
-          {site.nav.map((item) => (
+        <nav className="border-t border-line bg-bg px-5 pb-4 md:hidden">
+          {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="block border-b border-line/60 py-3.5 text-base text-muted transition-colors hover:text-accent"
+              className="block border-b border-line/70 py-3 text-muted transition-colors hover:text-fg"
             >
               {item.label}
             </Link>

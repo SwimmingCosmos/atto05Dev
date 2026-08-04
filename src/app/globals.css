@@ -1,20 +1,67 @@
 @import "tailwindcss";
 
-@theme {
-  --color-bg: #08090d;
-  --color-surface: #10131a;
-  --color-surface-2: #171b24;
-  --color-line: #242a36;
-  --color-line-strong: #333b4a;
-  --color-fg: #e9ecf1;
-  --color-muted: #939cad;
-  --color-faint: #6b7484;
-  --color-accent: #38d6ff;
-  --color-accent-dim: #1b93b5;
-  --color-accent-2: #ff5f9e;
+/*
+ * 配色はライトが基本、OS がダーク設定ならダークに切り替わる。
+ * 色を変えたいときはこの :root と @media (prefers-color-scheme: dark) だけ触ればいい。
+ */
+:root {
+  --bg: #fcfcfd;
+  --surface: #ffffff;
+  --surface-2: #f3f5f7;
+  --line: #e3e7eb;
+  --line-strong: #c9d1d9;
+  --fg: #1c2128;
+  --muted: #57606a;
+  --faint: #858e98;
+  --accent: #1f6feb;
+  --accent-weak: #dbe9fd;
 
-  --font-display: var(--font-display), var(--font-jp), sans-serif;
-  --font-sans: var(--font-jp), var(--font-display), sans-serif;
+  /* コードハイライト */
+  --hl-comment: #6e7781;
+  --hl-keyword: #cf222e;
+  --hl-string: #0a5c2e;
+  --hl-number: #953800;
+  --hl-title: #6639ba;
+  --hl-type: #0550ae;
+  --hl-meta: #8250df;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --surface: #151b23;
+    --surface-2: #1f242c;
+    --line: #262c36;
+    --line-strong: #3d444d;
+    --fg: #e6edf3;
+    --muted: #9aa4af;
+    --faint: #707a85;
+    --accent: #58a6ff;
+    --accent-weak: #142949;
+
+    --hl-comment: #8b949e;
+    --hl-keyword: #ff7b72;
+    --hl-string: #a5d6ff;
+    --hl-number: #f0883e;
+    --hl-title: #d2a8ff;
+    --hl-type: #79c0ff;
+    --hl-meta: #d2a8ff;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-weak: var(--accent-weak);
+
+  --font-sans: var(--font-jp), sans-serif;
   --font-mono: var(--font-mono-code), ui-monospace, monospace;
 }
 
@@ -25,7 +72,7 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 4.5rem;
   }
 
   body {
@@ -37,7 +84,7 @@
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+    background-color: var(--color-accent-weak);
   }
 
   a {
@@ -45,29 +92,7 @@
   }
 }
 
-@layer utilities {
-  /* 背景に敷く薄いグリッド */
-  .bg-grid {
-    background-image:
-      linear-gradient(to right, var(--color-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
-    background-size: 64px 64px;
-  }
-
-  .text-gradient {
-    background: linear-gradient(
-      100deg,
-      var(--color-fg) 10%,
-      var(--color-accent) 55%,
-      var(--color-accent-2) 95%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-}
-
-/* ---- ブログ本文（Markdown から生成した HTML）のスタイル ---- */
+/* ---- 本文（Markdown から生成した HTML）のスタイル ---- */
 .prose-post {
   font-size: 1rem;
   line-height: 1.95;
@@ -77,30 +102,28 @@
   margin-top: 1.15em;
 }
 .prose-post h2 {
-  margin-top: 2.6em;
+  margin-top: 2.4em;
   margin-bottom: 0.8em;
   padding-bottom: 0.4em;
   border-bottom: 1px solid var(--color-line);
-  font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  letter-spacing: 0.01em;
 }
 .prose-post h3 {
   margin-top: 2em;
   margin-bottom: 0.6em;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
 }
 .prose-post h4 {
   margin-top: 1.8em;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 700;
 }
 .prose-post a {
   color: var(--color-accent);
   text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--color-accent) 45%, transparent);
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
 }
 .prose-post a:hover {
   text-decoration-color: var(--color-accent);
@@ -132,14 +155,14 @@
 }
 .prose-post blockquote {
   padding: 0.2em 0 0.2em 1.1em;
-  border-left: 3px solid var(--color-accent-dim);
+  border-left: 3px solid var(--color-line-strong);
   color: var(--color-muted);
 }
 .prose-post img,
 .prose-post video,
 .prose-post iframe {
   max-width: 100%;
-  border-radius: 0.75rem;
+  border-radius: 0.6rem;
   border: 1px solid var(--color-line);
 }
 .prose-post iframe {
@@ -162,8 +185,8 @@
 .prose-post pre {
   overflow-x: auto;
   padding: 1.1rem 1.25rem;
-  border-radius: 0.75rem;
-  background: var(--color-surface);
+  border-radius: 0.6rem;
+  background: var(--color-surface-2);
   border: 1px solid var(--color-line);
   line-height: 1.7;
 }
@@ -195,48 +218,40 @@
   text-decoration: none;
 }
 
-/* highlight.js のトークン配色（ダーク） */
+/* コードハイライト（配色は :root の --hl-* で切り替わる） */
 .hljs-comment,
 .hljs-quote {
-  color: #6b7484;
+  color: var(--hl-comment);
   font-style: italic;
 }
 .hljs-keyword,
 .hljs-selector-tag,
-.hljs-literal,
-.hljs-type {
-  color: #ff5f9e;
+.hljs-literal {
+  color: var(--hl-keyword);
 }
 .hljs-string,
 .hljs-regexp,
 .hljs-addition {
-  color: #9be58b;
+  color: var(--hl-string);
 }
 .hljs-number,
 .hljs-symbol,
 .hljs-attr {
-  color: #ffb86b;
+  color: var(--hl-number);
 }
 .hljs-title,
 .hljs-title.function_,
 .hljs-section {
-  color: #38d6ff;
+  color: var(--hl-title);
 }
 .hljs-title.class_,
-.hljs-built_in {
-  color: #7dd3fc;
-}
-.hljs-variable,
-.hljs-template-variable,
-.hljs-params {
-  color: #e9ecf1;
+.hljs-built_in,
+.hljs-type {
+  color: var(--hl-type);
 }
 .hljs-meta,
 .hljs-doctag {
-  color: #a78bfa;
-}
-.hljs-deletion {
-  color: #ff8a8a;
+  color: var(--hl-meta);
 }
 .hljs-emphasis {
   font-style: italic;

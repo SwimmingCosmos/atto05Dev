@@ -6,9 +6,12 @@ import { ArrowUpRight } from "@/components/SocialIcons";
 import { Tag } from "@/components/Tag";
 import { getAllPosts, getAllTags } from "@/lib/blog";
 import { formatDate } from "@/lib/format";
+import { EMPTY_ROUTE_PARAM } from "@/lib/routes";
 
 export function generateStaticParams() {
-  return getAllTags().map(({ tag }) => ({ tag }));
+  const tags = getAllTags();
+  if (tags.length === 0) return [{ tag: EMPTY_ROUTE_PARAM }];
+  return tags.map(({ tag }) => ({ tag }));
 }
 
 export async function generateMetadata({
@@ -39,7 +42,7 @@ export default async function TagPage({ params }: PageProps<"/blog/tags/[tag]">)
 
       <header className="mt-6 border-b border-line pb-8">
         <p className="text-xs text-faint">タグ</p>
-        <h1 className="mt-1 font-display text-3xl font-bold tracking-tight">
+        <h1 className="mt-1 text-3xl font-bold tracking-tight">
           {decoded}
           <span className="ml-3 font-mono text-base font-normal text-faint">
             {posts.length}件
@@ -58,7 +61,7 @@ export default async function TagPage({ params }: PageProps<"/blog/tags/[tag]">)
                 >
                   {formatDate(post.date)}
                 </time>
-                <h2 className="mt-1.5 font-display text-lg leading-snug font-bold transition-colors group-hover:text-accent">
+                <h2 className="mt-1.5 text-lg leading-snug font-bold transition-colors group-hover:text-accent">
                   {post.title}
                 </h2>
                 {post.description && (

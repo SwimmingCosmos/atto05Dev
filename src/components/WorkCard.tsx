@@ -2,65 +2,51 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Tag } from "@/components/Tag";
-import { ArrowUpRight } from "@/components/SocialIcons";
-import type { Work } from "@/content/types";
+import type { Work } from "@/lib/types";
 
 export function WorkCard({ work }: { work: Work }) {
   return (
     <Link
       href={`/works/${work.slug}/`}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-line-strong hover:shadow-[0_0_0_1px_rgba(56,214,255,0.12),0_18px_40px_-24px_rgba(0,0,0,0.9)]"
+      className="group flex flex-col overflow-hidden rounded-xl border border-line bg-surface transition-colors hover:border-line-strong"
     >
-      <div className="relative aspect-16/10 overflow-hidden bg-surface-2">
+      <div className="relative aspect-video overflow-hidden border-b border-line bg-surface-2">
         <Image
           src={work.thumbnail}
           alt=""
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-surface via-surface/10 to-transparent" />
         {work.badge && (
-          <span className="absolute top-3 left-3 rounded-full border border-accent-2/40 bg-bg/80 px-2.5 py-1 text-[11px] text-accent-2 backdrop-blur-sm">
+          <span className="absolute top-2.5 left-2.5 rounded-md border border-line bg-surface/95 px-2 py-0.5 text-xs font-medium text-accent">
             {work.badge}
           </span>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-5">
-        <div className="flex items-center gap-2 text-xs text-faint">
-          <span className="font-mono">{work.org}</span>
-          {work.period && (
-            <>
-              <span aria-hidden>·</span>
-              <span className="truncate">{work.period}</span>
-            </>
-          )}
-        </div>
+      <div className="flex flex-1 flex-col gap-2 p-4">
+        <p className="font-mono text-xs text-faint">
+          {work.org}
+          {work.period && <span className="ml-2">{work.period}</span>}
+        </p>
 
-        <h3 className="font-display text-lg leading-snug font-bold transition-colors group-hover:text-accent">
-          {work.shortTitle ?? work.title}
+        <h3 className="leading-snug font-bold group-hover:text-accent">
+          {work.title}
         </h3>
 
-        <p className="line-clamp-3 text-sm text-muted">{work.summary}</p>
+        <p className="line-clamp-2 text-sm text-muted">{work.summary}</p>
 
-        <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
+        <div className="mt-auto flex flex-wrap gap-1.5 pt-1.5">
           {work.roles.map((role) => (
             <Tag key={role} variant="role">
               {role}
             </Tag>
           ))}
           {work.tech.map((tech) => (
-            <Tag key={tech} variant="tech">
-              {tech}
-            </Tag>
+            <Tag key={tech}>{tech}</Tag>
           ))}
         </div>
-
-        <span className="mt-1 inline-flex items-center gap-1 text-sm text-faint transition-colors group-hover:text-accent">
-          詳しく見る
-          <ArrowUpRight />
-        </span>
       </div>
     </Link>
   );

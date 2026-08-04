@@ -1,0 +1,31 @@
+# 執筆・スライド発表。1項目をコピーして足すだけ。date の新しい順に自動で並ぶ
+#
+# - title: タイトル
+#   date: 2026-01-01
+#   kinds: [執筆, LT]     ← 執筆 / スライド / LT / 勉強会 / 寄稿 / 同人誌 など自由
+#   url: https://…        ← まだ無いなら行ごと省略でOK（リンクなしで表示される）
+
+- title: 【作成】2026_A-PxL初心者向けプログラミング・Unity勉強会資料
+  date: 2026-04-27
+  kinds: [執筆, 勉強会]
+  # url: TODO a-pxl.notion.site/…da09f7 のフルURL
+
+- title: Unity6 Render Graph を使って軽量化してみる（LT）
+  date: 2025-10-18
+  kinds: [執筆, スライド, LT]
+  # url: TODO docs.google.com/presentation/… のフルURL
+
+- title: 【作成】2025_A-PxL初心者向けGit勉強会資料
+  date: 2025-06-13
+  kinds: [執筆, 勉強会]
+  # url: TODO a-pxl.notion.site/…eee673 のフルURL
+
+- title: Zli Techbook Vol.7（同人誌）
+  date: 2025-05-31
+  kinds: [寄稿, 同人誌]
+  # url: TODO techbookfest.org/product/…AYmSuC のフルURL
+
+- title: MetaQuest3(3S) の新機能? Passthrough Camera API のご紹介＆触ってみた（LT）
+  date: 2025-05-10
+  kinds: [LT, 執筆]
+  # url: TODO docs.google.com/presentation/… のフルURL

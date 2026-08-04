@@ -39,5 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-*.md
+# next dev が自動生成するファイルだけ除外する。
+# content/ 以下の .md はサイトの中身なので、まとめて *.md で消さないこと。
+/AGENTS.md
+/CLAUDE.md
+
 /.claude

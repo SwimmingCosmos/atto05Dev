@@ -9,7 +9,7 @@ import { formatDate } from "@/lib/format";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Unity・XR・ゲーム制作まわりで学んだことや、制作の記録を書いています。",
+    "Unity や XR まわりで調べたこと、作ったものの記録。",
 };
 
 export default function BlogIndex() {
@@ -19,9 +19,9 @@ export default function BlogIndex() {
   return (
     <div className="mx-auto max-w-4xl px-5 py-12 sm:px-8 sm:py-16">
       <header className="border-b border-line pb-8">
-        <h1 className="font-display text-4xl font-bold tracking-tight">Blog</h1>
+        <h1 className="text-4xl font-bold tracking-tight">Blog</h1>
         <p className="mt-2 text-muted">
-          Unity・XR・ゲーム制作まわりで学んだことや、制作の記録。
+          Unity や XR まわりで調べたこと、作ったものの記録。
         </p>
         {tags.length > 0 && (
           <ul className="mt-5 flex flex-wrap gap-2">
@@ -68,7 +68,7 @@ export default function BlogIndex() {
                     </span>
                     {post.draft && <Tag variant="accent">下書き</Tag>}
                   </div>
-                  <h2 className="mt-1.5 font-display text-xl leading-snug font-bold transition-colors group-hover:text-accent">
+                  <h2 className="mt-1.5 text-xl leading-snug font-bold transition-colors group-hover:text-accent">
                     {post.title}
                   </h2>
                   {post.description && (

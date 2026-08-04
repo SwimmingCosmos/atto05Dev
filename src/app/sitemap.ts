@@ -1,18 +1,17 @@
 import type { MetadataRoute } from "next";
 
-import { site } from "@/content/site";
-import { works } from "@/content/works";
+import { getSite, getWorks } from "@/lib/content";
 import { getAllPosts, getAllTags } from "@/lib/blog";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = site.url.replace(/\/$/, "");
+  const base = getSite().url.replace(/\/$/, "");
 
   return [
     { url: `${base}/`, priority: 1 },
     { url: `${base}/blog/`, priority: 0.8 },
-    ...works.map((work) => ({
+    ...getWorks().map((work) => ({
       url: `${base}/works/${work.slug}/`,
       priority: 0.7,
     })),

@@ -1,4 +1,4 @@
-import type { SocialIcon } from "@/content/links";
+import type { SocialIconName } from "@/lib/types";
 
 /**
  * SNS のロゴ。ブランドロゴを再配布しないで済むように、
@@ -8,7 +8,7 @@ export function SocialGlyph({
   icon,
   className = "h-5 w-5",
 }: {
-  icon: SocialIcon;
+  icon: SocialIconName;
   className?: string;
 }) {
   switch (icon) {

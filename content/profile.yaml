@@ -1,0 +1,53 @@
+# プロフィール。ここを書き換えるとトップページの表示が変わる
+name: 反町 佳暉
+nameEn: SORIMACHI Yoshiki
+handle: アト
+handleEn: Atto
+
+# トップに出すアイコン。public/ からのパス
+icon: /profile/icon.png
+
+from: 東京都
+affiliation: 会津大学 コンピュータ理工学部 学部3年（2024年4月入学）
+
+# 正しい日付にして先頭の「# 」を消すと基本情報に表示される
+# birthday: 2005/12/02
+
+# 自己紹介。1項目が1段落になる
+intro:
+  - >-
+    Unity をメインに、VR・PC などデバイスを問わず、
+    シリアスゲームからポップなものまでジャンルに縛られずゲームを作っています。
+    いまはチーム開発が中心です。
+  - >-
+    遊んだ人が「楽しい！」「面白い！」「やって良かった〜！」と思えるものを目指しています。
+    別途、システム開発のアルバイトを1年ほど続けています。
+
+circles:
+  - name: Zli
+    description: 技術総合系サークル。運営メンバー。
+    # url: https://…   ← 公式サイトがあれば足す
+  - name: A-PxL
+    description: XR サークル。2026年度副代表、運営メンバー。
+    url: https://a-pxl.notion.site/
+
+contactNote: ご連絡の際は、各種SNSのDMにて、お気軽にお声がけください。
+
+# icon は x / github / unityroom / qiita / mail のどれか
+sns:
+  - label: X
+    url: https://x.com/Aizu_AizuAizu
+    icon: x
+    note: 日々の制作・進捗
+  - label: GitHub
+    url: https://github.com/SwimmingCosmos
+    icon: github
+    note: ソースコード
+  - label: unityroom
+    url: https://unityroom.com/users/swimmingcosmo
+    icon: unityroom
+    note: 個人制作で公開したゲーム
+  - label: Qiita
+    url: https://qiita.com/atto_seconds
+    icon: qiita
+    note: 技術記事

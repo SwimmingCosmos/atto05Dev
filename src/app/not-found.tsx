@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <div className="mx-auto flex max-w-3xl flex-col items-center px-5 py-28 text-center sm:px-8">
       <p className="font-mono text-6xl font-bold text-accent/30">404</p>
-      <h1 className="mt-4 font-display text-2xl font-bold">
+      <h1 className="mt-4 text-2xl font-bold">
         ページが見つかりませんでした
       </h1>
       <p className="mt-2 text-muted">
