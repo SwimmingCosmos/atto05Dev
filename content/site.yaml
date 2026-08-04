@@ -3,5 +3,5 @@ title: Atto's Portfolio
 shortTitle: Atto
 description: アト（反町 佳暉）のポートフォリオとブログ。Unity を中心にしたゲーム制作の記録。
 
-# TODO: 公開先が決まったら実際のドメインに変える（OGP と sitemap.xml に使われる）
-url: https://example.com
+# 公開先の URL。OGP と sitemap.xml に使われます
+url: https://atto05.dev
