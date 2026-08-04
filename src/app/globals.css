@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #08090d;
+  --color-surface: #10131a;
+  --color-surface-2: #171b24;
+  --color-line: #242a36;
+  --color-line-strong: #333b4a;
+  --color-fg: #e9ecf1;
+  --color-muted: #939cad;
+  --color-faint: #6b7484;
+  --color-accent: #38d6ff;
+  --color-accent-dim: #1b93b5;
+  --color-accent-2: #ff5f9e;
+
+  --font-display: var(--font-display), var(--font-jp), sans-serif;
+  --font-sans: var(--font-jp), var(--font-display), sans-serif;
+  --font-mono: var(--font-mono-code), ui-monospace, monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.8;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  }
+
+  a {
+    text-underline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  /* 背景に敷く薄いグリッド */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      100deg,
+      var(--color-fg) 10%,
+      var(--color-accent) 55%,
+      var(--color-accent-2) 95%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* ---- ブログ本文（Markdown から生成した HTML）のスタイル ---- */
+.prose-post {
+  font-size: 1rem;
+  line-height: 1.95;
+  color: var(--color-fg);
+}
+.prose-post > * + * {
+  margin-top: 1.15em;
+}
+.prose-post h2 {
+  margin-top: 2.6em;
+  margin-bottom: 0.8em;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid var(--color-line);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.prose-post h3 {
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.prose-post h4 {
+  margin-top: 1.8em;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.prose-post a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+.prose-post a:hover {
+  text-decoration-color: var(--color-accent);
+}
+.prose-post ul,
+.prose-post ol {
+  padding-left: 1.5em;
+}
+.prose-post ul {
+  list-style: disc;
+}
+.prose-post ol {
+  list-style: decimal;
+}
+.prose-post li::marker {
+  color: var(--color-faint);
+}
+.prose-post li + li {
+  margin-top: 0.4em;
+}
+/* GFM のチェックリストは行頭の点を消す */
+.prose-post li.task-list-item {
+  list-style: none;
+  margin-left: -1.4em;
+}
+.prose-post li.task-list-item input[type="checkbox"] {
+  margin-right: 0.5em;
+  accent-color: var(--color-accent);
+}
+.prose-post blockquote {
+  padding: 0.2em 0 0.2em 1.1em;
+  border-left: 3px solid var(--color-accent-dim);
+  color: var(--color-muted);
+}
+.prose-post img,
+.prose-post video,
+.prose-post iframe {
+  max-width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-line);
+}
+.prose-post iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+.prose-post hr {
+  margin: 2.5em 0;
+  border-top: 1px solid var(--color-line);
+}
+.prose-post code {
+  padding: 0.15em 0.4em;
+  border-radius: 0.3rem;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-line);
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+}
+.prose-post pre {
+  overflow-x: auto;
+  padding: 1.1rem 1.25rem;
+  border-radius: 0.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  line-height: 1.7;
+}
+.prose-post pre code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 0.85rem;
+}
+.prose-post table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.prose-post th,
+.prose-post td {
+  padding: 0.5em 0.9em;
+  border: 1px solid var(--color-line);
+  text-align: left;
+}
+.prose-post th {
+  background: var(--color-surface-2);
+  font-weight: 700;
+}
+.prose-post :is(h2, h3, h4) > a.heading-anchor {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* highlight.js のトークン配色（ダーク） */
+.hljs-comment,
+.hljs-quote {
+  color: #6b7484;
+  font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-type {
+  color: #ff5f9e;
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-addition {
+  color: #9be58b;
+}
+.hljs-number,
+.hljs-symbol,
+.hljs-attr {
+  color: #ffb86b;
+}
+.hljs-title,
+.hljs-title.function_,
+.hljs-section {
+  color: #38d6ff;
+}
+.hljs-title.class_,
+.hljs-built_in {
+  color: #7dd3fc;
+}
+.hljs-variable,
+.hljs-template-variable,
+.hljs-params {
+  color: #e9ecf1;
+}
+.hljs-meta,
+.hljs-doctag {
+  color: #a78bfa;
+}
+.hljs-deletion {
+  color: #ff8a8a;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
