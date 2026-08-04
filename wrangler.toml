@@ -1,6 +1,6 @@
 # Cloudflare（Workers の Git 連携）用の設定。
 # ダッシュボード側の設定: Build command は npm run build、Deploy command は npx wrangler deploy
-name = "atto-portfolio"
+name = "atto05dev"
 compatibility_date = "2026-08-01"
 
 [assets]
