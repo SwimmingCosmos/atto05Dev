@@ -89,23 +89,27 @@ draft: false
 
 公開記事が0件でもビルドは通ります。
 
-## 公開する（Cloudflare Pages）
+## 公開する（Cloudflare）
 
-このリポジトリは静的サイトとして書き出す設定なので、アダプタ（opennextjs-cloudflare や next-on-pages）は使いません。Cloudflare Pages のビルド設定は次のようにしてください。
+このリポジトリは静的サイトとして書き出すので、アダプタ（opennextjs-cloudflare や next-on-pages）は使いません。
+
+Cloudflare の Git 連携（Workers）でデプロイする場合、ダッシュボードの設定は次のとおりです。
 
 | 設定 | 値 |
 | --- | --- |
-| Framework preset | None（または Next.js (Static HTML Export)） |
 | Build command | `npm run build` |
-| Build output directory | `out` |
+| Deploy command | `npx wrangler deploy` |
 
-`npx opennextjs-cloudflare build` が失敗した場合は、プロジェクト作成時に Next.js プリセットが選ばれています。ダッシュボードの Settings → Build から上の値に変更するか、プロジェクトを作り直して接続し直してください。
+成果物の場所は `wrangler.toml` の `[assets] directory = "./out"` から読まれるため、ダッシュボード側での指定は不要です。
 
-リポジトリには `wrangler.toml`（出力先の指定）と `.node-version`（Node 22）を置いてあります。出力先はこのファイルから読まれますが、Build command はダッシュボード側の設定が使われます。
+補足です。
+
+- `npx opennextjs-cloudflare build` が失敗する場合は、Build command が上記になっているか確認してください。Next.js プリセットのままだとアダプタが走ってしまいます
+- 旧来の Cloudflare Pages プロジェクトとして接続している場合は、`wrangler.toml` の `[assets]` ブロックを削除して `pages_build_output_dir = "out"` に置き換え、ダッシュボードの Build output directory に `out` を指定してください
 
 ほかのホスティング（Vercel / Netlify / GitHub Pages）でも `out/` を配信すれば動きます。GitHub Pages でサブパス（`https://<ユーザー名>.github.io/<リポジトリ名>/`）に置く場合だけ、`next.config.ts` に `basePath: "/<リポジトリ名>"` を足してください。
 
-公開する URL が決まったら `content/site.yaml` の `url` を実際のドメインに変えてください。OGP と `sitemap.xml` に使われます。
+公開する URL を変えるときは、`content/site.yaml` の `url` も合わせて変えてください。OGP と `sitemap.xml` に使われます。
 
 ## 構成
 

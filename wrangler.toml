@@ -1,5 +1,8 @@
-# Cloudflare Pages 用の設定。
-# ビルドコマンドはダッシュボード側で npm run build を指定してください（このファイルからは読まれません）。
+# Cloudflare（Workers の Git 連携）用の設定。
+# ダッシュボード側の設定: Build command は npm run build、Deploy command は npx wrangler deploy
 name = "atto-portfolio"
-pages_build_output_dir = "out"
 compatibility_date = "2026-08-01"
+
+[assets]
+directory = "./out"
+not_found_handling = "404-page"
