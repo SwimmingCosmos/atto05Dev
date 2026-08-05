@@ -33,7 +33,7 @@ circles:
 
 contactNote: ご連絡の際は、各種SNSのDMにて、お気軽にお声がけください。
 
-# icon は x / github / unityroom / qiita / mail のどれか
+# icon は x / github / unityroom / qiita / mail のどれか。note は省略できます（URL から自動で補足が付きます）
 sns:
   - label: X
     url: https://x.com/Aizu_AizuAizu

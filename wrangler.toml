@@ -3,8 +3,11 @@
 name = "atto05dev"
 compatibility_date = "2026-08-01"
 
+# workers.dev の URL を閉じる設定。
+# デバッグ用に workers.dev で見たいときは、この行の先頭に「# 」を付けて一時的に無効化してください。
+# 注意: この行は TOML の仕様上 [assets] より上に置く必要があります（下に書くと assets の設定として解釈されてエラーになります）。
+workers_dev = false
+
 [assets]
 directory = "./out"
 not_found_handling = "404-page"
-
-# workers_dev = false

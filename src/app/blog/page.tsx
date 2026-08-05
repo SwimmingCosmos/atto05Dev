@@ -63,9 +63,6 @@ export default function BlogIndex() {
                     >
                       {formatDate(post.date)}
                     </time>
-                    <span className="font-mono text-xs text-faint">
-                      約{post.readingMinutes}分
-                    </span>
                     {post.draft && <Tag variant="accent">下書き</Tag>}
                   </div>
                   <h2 className="mt-1.5 text-xl leading-snug font-bold transition-colors group-hover:text-accent">

@@ -21,8 +21,6 @@ export type PostMeta = {
   cover?: string;
   /** true にすると本番ビルドから除外される（開発中は表示される） */
   draft: boolean;
-  /** ざっくりの読了時間（分） */
-  readingMinutes: number;
 };
 
 export type Post = PostMeta & {
@@ -36,15 +34,6 @@ function isMarkdown(fileName: string) {
 
 function slugOf(fileName: string) {
   return fileName.replace(/\.mdx?$/, "");
-}
-
-/**
- * 日本語は単語で数えられないので、空白を除いた文字数から概算する。
- * 日本語 500文字/分 くらいを目安にした。
- */
-function estimateReadingMinutes(body: string) {
-  const chars = body.replace(/\s/g, "").length;
-  return Math.max(1, Math.round(chars / 500));
 }
 
 function readFileMeta(fileName: string): { meta: PostMeta; body: string } {
@@ -69,7 +58,6 @@ function readFileMeta(fileName: string): { meta: PostMeta; body: string } {
       tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
       cover: data.cover ? String(data.cover) : undefined,
       draft: Boolean(data.draft),
-      readingMinutes: estimateReadingMinutes(content),
     },
     body: content,
   };

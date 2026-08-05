@@ -5,6 +5,3 @@ description: アト（反町 佳暉）のポートフォリオとブログ。Uni
 
 # 公開先の URL。OGP と sitemap.xml に使われます
 url: https://atto05.dev
-
-# デバッグしたい時はここを外す
-workers_dev = false

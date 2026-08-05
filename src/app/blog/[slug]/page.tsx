@@ -65,9 +65,6 @@ export default async function BlogPost({ params }: PageProps<"/blog/[slug]">) {
               （更新 {formatDate(post.updated)}）
             </span>
           )}
-          <span className="font-mono text-xs text-faint">
-            約{post.readingMinutes}分
-          </span>
           {post.draft && <Tag variant="accent">下書き</Tag>}
         </div>
 

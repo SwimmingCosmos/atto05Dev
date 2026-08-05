@@ -13,7 +13,7 @@ import {
   getWorks,
   getWritings,
 } from "@/lib/content";
-import { formatDate, hostOf } from "@/lib/format";
+import { formatDate, hostOf, linkAutoNote } from "@/lib/format";
 
 export default function Home() {
   const profile = getProfile();
@@ -335,11 +335,9 @@ export default function Home() {
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block font-bold">{link.label}</span>
-                {link.note && (
-                  <span className="block truncate text-xs text-faint">
-                    {link.note}
-                  </span>
-                )}
+                <span className="block truncate text-xs text-faint">
+                  {link.note ?? linkAutoNote(link.url)}
+                </span>
               </span>
               <ArrowUpRight className="shrink-0 text-faint transition-colors group-hover:text-accent" />
             </a>
