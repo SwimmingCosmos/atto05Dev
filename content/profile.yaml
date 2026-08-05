@@ -11,7 +11,7 @@ from: 東京都
 affiliation: 会津大学 コンピュータ理工学部 学部3年（2024年4月入学）
 
 # 正しい日付にして先頭の「# 」を消すと基本情報に表示されます
-# birthday: 2005/12/02
+birthday: 2005/12/02
 
 # 自己紹介。1項目が1段落になります
 intro:
@@ -52,7 +52,7 @@ sns:
     icon: qiita
     note: 技術記事
   # メール転送（Cloudflare Email Routing）を設定したら、コメントを外してください
-  # - label: Mail
-  #   url: mailto:contact@atto05.dev
-  #   icon: mail
-  #   note: メールでの連絡
+  - label: Mail
+    url: mailto:contact@atto05.dev
+    icon: mail
+    note: メールでの連絡
