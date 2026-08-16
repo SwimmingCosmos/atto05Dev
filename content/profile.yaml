@@ -18,31 +18,30 @@ intro:
   - >-
     Unity をメインに、VR・PC などデバイスを問わず、
     シリアスゲームからポップなものまでジャンルに縛られずゲームを作っています。
-    いまはチーム開発が中心です。
+    現在はチーム開発が中心です。
   - >-
-    遊んだ人が「楽しい！」「面白い！」「やって良かった〜！」と思えるものを目指しています。
-    別途、システム開発のアルバイトを1年ほど続けています。
+    遊んだ人が「楽しい！」「面白い！」「やって良かった〜！」と思ってくださるものを目指して、日々製作をしています。
 
 circles:
   - name: Zli
-    description: 技術総合系サークル。運営メンバー。
-    # url: https://…   ← 公式サイトがあれば足す
+    description: 技術総合系サークル。元運営メンバー。
+    url: https://zli.works/
   - name: A-PxL
     description: XR サークル。2026年度副代表、運営メンバー。
-    url: https://a-pxl.notion.site/
+    url: https://sites.google.com/view/a-pxl
 
-contactNote: ご連絡の際は、各種SNSのDMにて、お気軽にお声がけください。
+contactNote: ご連絡の際は、XのDM、もしくはメールにて、お気軽にお声がけください。
 
 # icon は x / github / unityroom / qiita / mail のどれか。note は省略できます（URL から自動で補足が付きます）
 sns:
   - label: X
     url: https://x.com/Aizu_AizuAizu
     icon: x
-    note: 日々の制作・進捗
+    note: 日々の制作・進捗、日常の呟きなど
   - label: GitHub
     url: https://github.com/SwimmingCosmos
     icon: github
-    note: ソースコード
+    note: 公開しているリポジトリはこちらから
   - label: unityroom
     url: https://unityroom.com/users/swimmingcosmo
     icon: unityroom
