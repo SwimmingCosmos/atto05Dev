@@ -6,6 +6,9 @@ period: 2025年2月初旬〜2025年4月初旬（約2ヶ月）
 team: 10人体制
 roles: [プログラマ, UIデザイン]
 tech: [Unity, アニメーション（DOTween）, 電子工作]
+videos:
+   - title: 担当箇所プレイ映像
+     url: https://youtu.be/mZ4N87-kY-c
 summary: 新入生オリエンテーション向けに10人で作ったすごろく型ゲーム。DiGRA JAPAN 2025年夏季研究発表大会で共同発表。
 badge: 学会発表
 links:

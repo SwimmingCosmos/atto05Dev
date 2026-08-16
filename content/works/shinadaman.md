@@ -5,11 +5,11 @@ date: 2025-12-01
 period: 2025年10月〜2025年12月（約2ヶ月）
 roles: [UIデザイン, プログラマ]
 tech: [Unity, アニメーション（DOTween）, 電子工作]
-summary: 福島中央テレビ主催「中テレ祭り2025」で展示した体験型ゲーム。サークル A-PxL で開発。
+summary: 福島中央テレビ主催「中テレ祭り2025」で展示したVR及びARを用いた体験型ゲーム。サークル A-PxL で開発。
 videos:
   # TODO: プレイ映像があれば YouTube / Drive の URL を貼ってください（サムネイルも自動で付きます）
-  # - title: プレイ映像
-  #   url:
+   - title: プレイ映像
+     url:https://www.youtube.com/watch?v=nNAIxISfTwo
 links:
   # TODO: 中テレ祭り / 中テレテクノロジーラボ の公式ページがあれば追加してください
 draft: false
